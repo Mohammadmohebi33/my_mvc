@@ -1,0 +1,10 @@
+<?php
+
+
+ echo "front controller" ; 
+
+
+
+
+
+?>
