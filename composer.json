@@ -1,0 +1,15 @@
+{
+    "name": "mammad/mvc_php",
+    "autoload": {
+        "psr-4": {
+            "Mammad\\MvcPhp\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mohammadmohebbi33",
+            "email": "mohammad.rasoul.mohebi@gmail.com"
+        }
+    ],
+    "require": {}
+}

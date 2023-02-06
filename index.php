@@ -1,10 +1,6 @@
 <?php
 
 
- echo "front controller" ; 
-
-
-
-
+ echo "front controller"; 
 
 ?>
