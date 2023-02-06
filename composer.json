@@ -11,5 +11,7 @@
             "email": "mohammad.rasoul.mohebi@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
 }
