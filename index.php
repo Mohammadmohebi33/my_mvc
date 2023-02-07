@@ -4,5 +4,6 @@
 include "App/bootsrap/init.php";
 
 
-echo \App\Utilities\Url::current_route();
+$router = new Route();
+$router->run();
 ?>
