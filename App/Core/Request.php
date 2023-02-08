@@ -9,7 +9,7 @@ class Request{
     private $method;
     private $agent;
     private $ip;
-    private $url;
+    private $uri;
 
     /**
      * @param $params
@@ -20,18 +20,18 @@ class Request{
     public function __construct()
     {
         $this->params = $_REQUEST;
-        $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->method = strtolower($_SERVER['REQUEST_METHOD']);
         $this->agent = $_SERVER['REMOTE_AGENT'];
         $this->ip = $_SERVER['REMOTE_ADDR'];
-        $this->url = strtok($_SERVER['REQUEST_URI'] , "?");
+        $this->uri = strtok($_SERVER['REQUEST_URI'] , "?");
     }
 
     /**
      * @return false|string
      */
-    public function getUrl(): bool|string
+    public function getUri(): bool|string
     {
-        return $this->url;
+        return $this->uri;
     }
 
     /**

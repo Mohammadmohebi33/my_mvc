@@ -12,4 +12,4 @@ Route::post("/a" , function (){
     echo "b";
 });
 
-var_dump(Route::routes());
+//var_dump(Route::routes());
