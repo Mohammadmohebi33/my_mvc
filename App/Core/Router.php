@@ -4,6 +4,7 @@ namespace App\Core\Router;
 
 use App\Core\Request;
 use App\Core\Route\Route;
+use function App\helper\view;
 
 class Router
 {
@@ -21,7 +22,6 @@ class Router
         $this->request = new Request();
         $this->routes = Route::routes();
         $this->current_route = $this->findRoute($this->request) ?? null;
-        var_dump($this->current_route);
     }
 
 
@@ -37,10 +37,24 @@ class Router
     }
 
 
-
     public function run()
     {
+        if (is_null($this->current_route)){
+            $this->dispatch404();
+        }
+    }
 
+
+    /**
+     * @return void
+     * when current_route is null or not set
+     * this function for 404 and set status code 404
+     */
+    public function dispatch404()
+    {
+        header("HTTP/1.0 404 Not Found");
+        view('404');
+        die();
     }
 
 

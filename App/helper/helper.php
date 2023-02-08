@@ -16,5 +16,13 @@ function random_element($arr)
     return array_pop($arr);
 }
 
+function view($path)
+{
+    $path = str_replace("." , "/" , $path);
+    $view_full_path =  "App/views/$path.php";
+    include_once $view_full_path;
+
+}
+
 
 
