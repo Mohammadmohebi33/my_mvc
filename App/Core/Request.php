@@ -9,6 +9,7 @@ class Request{
     private $method;
     private $agent;
     private $ip;
+    private $url;
 
     /**
      * @param $params
@@ -22,6 +23,15 @@ class Request{
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->agent = $_SERVER['REMOTE_AGENT'];
         $this->ip = $_SERVER['REMOTE_ADDR'];
+        $this->url = strtok($_SERVER['REQUEST_URI'] , "?");
+    }
+
+    /**
+     * @return false|string
+     */
+    public function getUrl(): bool|string
+    {
+        return $this->url;
     }
 
     /**

@@ -1,45 +1,46 @@
 <?php
 
+namespace App\Core\Route;
+
 class Route{
 
-    private $routes;
+    private static $routes = [];
 
-    /**
-     * @param $routes
-     */
-    public function __construct()
+    private static function add($methods,$uri,$action=null)
     {
-        $this->routes = [
-            "/a" => "a.php" ,
-            "/b" => "b.php"
-        ];
+          $methods = is_array($methods) ? $methods : [$methods];
+          self::$routes[] = ['methods' => $methods , "uri" => $uri , "action" => $action];
     }
 
 
-    public function run()
+
+
+    public static function get($uri,$action)
     {
-        $current_url = \App\Utilities\Url::current_route();
-        foreach ($this->routes as $key => $value){
-            if ($current_url == $key){
-                $this->includeAndDie("App/views/".$value);
-            }
-        }
-        $this->e404();
+        self::add("get" , $uri,$action);
+    }
+    public static function post($uri,$action)
+    {
+        self::add("post" , $uri,$action);
+    }
+    public static function put($uri,$action)
+    {
+        self::add("put" , $uri,$action);
+    }
+    public static function patch($uri,$action)
+    {
+        self::add("patch" , $uri,$action);
+    }
+    public static function delete($uri,$action)
+    {
+        self::add("delete" , $uri,$action);
     }
 
 
-    private function includeAndDie($viewPath)
+
+    public static function routes()
     {
-        include $viewPath;
-        die();
+        return self::$routes;
     }
-
-
-    private function e404()
-    {
-        header("HTTP/1.0 404 Not Found");
-        $this->includeAndDie("App/views/404.php");
-    }
-
 
 }
