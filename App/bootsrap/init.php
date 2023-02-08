@@ -17,6 +17,7 @@ include "App/Utilities/Url.php";
 include "App/Core/Route.php";
 include "App/routes/web.php";
 include "App/Core/Router.php";
+include "App/Controllers/HomeController.php";
 
 
 

@@ -11,6 +11,7 @@ class Router
     private $request;
     private $routes;
     private $current_route;
+    const BASE_CONTROLLER = '\App\Controllers\\';
 
     /**
      * @param $request
@@ -42,6 +43,8 @@ class Router
         if (is_null($this->current_route)){
             $this->dispatch404();
         }
+
+      $this->dispatch($this->current_route);
     }
 
 
@@ -55,6 +58,38 @@ class Router
         header("HTTP/1.0 404 Not Found");
         view('404');
         die();
+    }
+
+
+    private function dispatch($route)
+    {
+        $action = $route['action'];
+
+        if (is_null($action)){
+            return;
+        }
+
+        elseif (is_callable($action)){
+            call_user_func($action);
+        }
+
+        elseif (is_string($action)){
+            $action = explode("@" , $action);
+            $method = $action[1];
+            if (is_array($action)){
+                $class_name = self::BASE_CONTROLLER.$action[0];
+                if (!class_exists($class_name)){
+                    throw new \Exception("class $class_name dont exist");
+                }
+
+                $controller = new $class_name();
+                if (!method_exists($controller, $method)){
+                    throw new \Exception("method $method dont exist in $class_name");
+                }
+                $controller->{$method}();
+            }
+        }
+
     }
 
 
