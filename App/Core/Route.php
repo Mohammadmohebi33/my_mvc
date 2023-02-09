@@ -6,34 +6,34 @@ class Route{
 
     private static $routes = [];
 
-    private static function add($methods,$uri,$action=null)
+    private static function add($methods,$uri,$action=null,$middleware=[])
     {
           $methods = is_array($methods) ? $methods : [$methods];
-          self::$routes[] = ['methods' => $methods , "uri" => $uri , "action" => $action];
+          self::$routes[] = ['methods' => $methods , "uri" => $uri , "action" => $action, "middlewares" => $middleware];
     }
 
 
 
 
-    public static function get($uri,$action = null)
+    public static function get($uri,$action = null,$middleware=[])
     {
-        self::add("get" , $uri,$action);
+        self::add("get" , $uri,$action,$middleware);
     }
-    public static function post($uri,$action= null)
+    public static function post($uri,$action= null,$middleware=[])
     {
-        self::add("post" , $uri,$action);
+        self::add("post" , $uri,$action,$middleware);
     }
-    public static function put($uri,$action=null)
+    public static function put($uri,$action=null,$middleware=[])
     {
-        self::add("put" , $uri,$action);
+        self::add("put" , $uri,$action,$middleware);
     }
-    public static function patch($uri,$action=null)
+    public static function patch($uri,$action=null,$middleware=[])
     {
-        self::add("patch" , $uri,$action);
+        self::add("patch" , $uri,$action,$middleware);
     }
-    public static function delete($uri,$action=null)
+    public static function delete($uri,$action=null,$middleware=[])
     {
-        self::add("delete" , $uri,$action);
+        self::add("delete" , $uri,$action,$middleware);
     }
 
 

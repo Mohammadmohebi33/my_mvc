@@ -18,6 +18,9 @@ include "App/Core/Route.php";
 include "App/routes/web.php";
 include "App/Core/Router.php";
 include "App/Controllers/HomeController.php";
+include "App/Middleware/Contract/MiddlewareInterface.php";
+include "App/Middleware/testMid.php";
+
 
 
 
