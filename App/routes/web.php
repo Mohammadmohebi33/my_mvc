@@ -2,11 +2,7 @@
 
 use App\Core\Route\Route;
 
-Route::get("/a" , function (){
-    echo "a";
-});
 
-Route::get("/b");
 Route::get("/home" , "HomeController@index");
+Route::get("/home/posts" , "HomeController@getPosts");
 
-//var_dump(Route::routes());

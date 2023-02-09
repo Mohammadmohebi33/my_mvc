@@ -2,11 +2,21 @@
 
 namespace App\Controllers;
 
+use function App\helper\view;
+
 class HomeController{
 
 
     public function index()
     {
-        echo "<h1>hello is page called from controller </h1>";
+        view("home.index");
+    }
+
+    public function getPosts()
+    {
+        #db
+        $posts = ["post1" , "post2", "post3"];
+        $data = ["posts" => $posts];
+        view("home.posts" , $data);
     }
 }
